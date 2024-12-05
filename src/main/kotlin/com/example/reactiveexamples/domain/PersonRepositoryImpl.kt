@@ -9,7 +9,7 @@ class PersonRepositoryImpl : PersonRepository {
     val person3 = Person(3, "Mentor", "Mentor")
 
     override fun getById(id: Int): Mono<Person> {
-        return Mono.just(person1)
+        return findAll().filter { it.id == id }.next()
     }
 
     override fun findAll(): Flux<Person> {
